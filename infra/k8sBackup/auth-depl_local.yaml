@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: us.gcr.io/ticketing-microservice-324017/auth
+          image: rupamswain1/auth
 ---
 apiVersion: v1
 kind: Service

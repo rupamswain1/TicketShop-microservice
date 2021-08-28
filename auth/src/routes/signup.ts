@@ -12,10 +12,11 @@ router.post('/api/users/signup',[
 ],(req:Request,res:Response)=>{
     const error=validationResult(req);
     if(!error.isEmpty()){
-        res.status(400).send(error.array());
+        throw new Error("Invalid Email and Password")
     }
 
     const {email,password}=req.body;
+    throw new Error('Error Connecting to DataBase')
     res.send({message:'success'})
 });
 

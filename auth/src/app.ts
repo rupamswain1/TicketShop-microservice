@@ -13,7 +13,7 @@ app.use(json());
 app.use(
     cookieSession({
         signed:false,
-        secure:true
+        secure:true//put this to true
     })
 )
 
@@ -34,8 +34,8 @@ const start=async ():Promise<void>=>{
     catch(err){
         console.error(err)
     }
-    app.listen(4000,()=>{
-        console.log(">>>>>Auth Service Listining on Port: 4000<<<<<<<") 
+    app.listen(3000,()=>{
+        console.log(">>>>>Auth Service Listining on Port: 443<<<<<<<") 
     })
 }
 start();

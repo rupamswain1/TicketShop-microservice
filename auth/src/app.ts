@@ -20,9 +20,9 @@ app.use(
 app.use(currentUserRouter);
 app.use(signUpRouter);
 
-app.all('*',async()=>{
-    throw new NotFoundError();
-})
+// app.all('*',async()=>{
+//     throw new NotFoundError();
+// })
 
 app.use(errorHandler)
 
@@ -34,8 +34,8 @@ const start=async ():Promise<void>=>{
     catch(err){
         console.error(err)
     }
-    app.listen(3000,()=>{
-        console.log(">>>>>Auth Service Listining on Port: 443<<<<<<<") 
+    app.listen(4000,()=>{
+        console.log(">>>>>Auth Service Listining on Port: 4000<<<<<<<") 
     })
 }
 start();

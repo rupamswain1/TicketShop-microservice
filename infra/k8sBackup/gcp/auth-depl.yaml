@@ -14,13 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: rupamswain1/auth
-          env:
-            - name: JWT_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: jet-secret
-                  key: JWT_KEY
+          image: us.gcr.io/ticketing-microservice-324017/auth
 ---
 apiVersion: v1
 kind: Service

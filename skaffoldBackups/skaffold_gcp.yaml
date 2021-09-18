@@ -5,8 +5,10 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: ticketing-microservice-324017
   artifacts:
     - image: rupamswain1/auth
       context: auth

@@ -5,6 +5,7 @@ import { RequestValidationError } from '../errors/requestValidationError';
 import { DatabaseConnectionError } from '../errors/databaseConnectionError';
 import { Password } from '../services/password';
 import { BadRequestError } from '../errors/badRequestError';
+import { validationRequest } from '../middleware/validateRequest';
 import {User} from '../models/users';
 
 const router=express.Router();
@@ -15,11 +16,13 @@ const passwordValidation=body('password').trim().isLength({min:4,max:20}).withMe
 router.post('/api/users/signup',[
     emailValidation,
     passwordValidation
-],async (req:Request,res:Response)=>{
-    const error=validationResult(req);
-    if(!error.isEmpty()){
-        throw new RequestValidationError(error.array());
-    }
+],
+validationRequest
+,async (req:Request,res:Response)=>{
+    // const error=validationResult(req);
+    // if(!error.isEmpty()){
+    //     throw new RequestValidationError(error.array());
+    // }
 
     const {email,password}=req.body;
     const existingUser=await User.findOne({email:email});
@@ -33,7 +36,9 @@ router.post('/api/users/signup',[
     const userJwt=jwt.sign({
         id:user.id,
         email: user.email
-    },'thisIsTheSecretKey')
+    },
+    process.env.JWT_KEY!
+    )
 
     //Store it in the session object
     req.session={

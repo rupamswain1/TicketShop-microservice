@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 import {json} from 'body-parser';
 import { currentUserRouter } from './routes/current-user';
 import { signUpRouter } from './routes/signup';
+import { signInRouter } from './routes/signIn';
 import {errorHandler} from './middleware/errorHandler';
 import { NotFoundError } from './errors/notFoundError';
 const app=express();
@@ -18,6 +19,7 @@ app.use(
 )
 
 app.use(currentUserRouter);
+app.use(signInRouter);
 app.use(signUpRouter);
 
 // app.all('*',async()=>{
@@ -27,6 +29,9 @@ app.use(signUpRouter);
 app.use(errorHandler)
 
 const start=async ():Promise<void>=>{
+    if(!process.env.JWT_KEY){
+        throw new Error('JWT KEY is not defined')
+    }
     try{
         await mongoose.connect('mongodb://rupam123:rupam123@nodecluster-shard-00-00.plaky.mongodb.net:27017,nodecluster-shard-00-01.plaky.mongodb.net:27017,nodecluster-shard-00-02.plaky.mongodb.net:27017/TicketShopDB?ssl=true&replicaSet=atlas-t1w1wl-shard-0&authSource=admin&retryWrites=true&w=majority')
         

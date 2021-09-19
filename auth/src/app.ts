@@ -7,6 +7,7 @@ import { currentUserRouter } from './routes/current-user';
 import { signUpRouter } from './routes/signup';
 import { signInRouter } from './routes/signIn';
 import {errorHandler} from './middleware/errorHandler';
+import { signoutRouter } from './routes/signout';
 import { NotFoundError } from './errors/notFoundError';
 const app=express();
 app.set('trust proxy', true);
@@ -21,7 +22,7 @@ app.use(
 app.use(currentUserRouter);
 app.use(signInRouter);
 app.use(signUpRouter);
-
+app.use(signoutRouter);
 // app.all('*',async()=>{
 //     throw new NotFoundError();
 // })

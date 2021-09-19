@@ -1,9 +1,8 @@
 import express,{Request,Response} from 'express';
 import jwt from 'jsonwebtoken';
 import {body,validationResult} from 'express-validator';
-import { RequestValidationError } from '../errors/requestValidationError';
-import { DatabaseConnectionError } from '../errors/databaseConnectionError';
-import { Password } from '../services/password';
+
+
 import { BadRequestError } from '../errors/badRequestError';
 import { validationRequest } from '../middleware/validateRequest';
 import {User} from '../models/users';
@@ -19,11 +18,6 @@ router.post('/api/users/signup',[
 ],
 validationRequest
 ,async (req:Request,res:Response)=>{
-    // const error=validationResult(req);
-    // if(!error.isEmpty()){
-    //     throw new RequestValidationError(error.array());
-    // }
-
     const {email,password}=req.body;
     const existingUser=await User.findOne({email:email});
     if(existingUser){

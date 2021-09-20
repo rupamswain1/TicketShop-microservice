@@ -1,6 +1,7 @@
 import express,{Request,Response} from 'express';
 import jwt from 'jsonwebtoken'
 import { CurrentUser } from '../middleware/currentUser';
+import { RequireAuth } from '../middleware/requireAuth';
 const router=express.Router();
 
 router.get('/api/users/currentUser',

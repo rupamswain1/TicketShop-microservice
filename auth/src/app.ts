@@ -34,7 +34,7 @@ const start=async ():Promise<void>=>{
         throw new Error('JWT KEY is not defined')
     }
     try{
-        await mongoose.connect('mongodb://rupam123:rupam123@nodecluster-shard-00-00.plaky.mongodb.net:27017,nodecluster-shard-00-01.plaky.mongodb.net:27017,nodecluster-shard-00-02.plaky.mongodb.net:27017/TicketShopDB?ssl=true&replicaSet=atlas-t1w1wl-shard-0&authSource=admin&retryWrites=true&w=majority')
+        await mongoose.connect('')//MongoDB key here
         
     }
     catch(err){
